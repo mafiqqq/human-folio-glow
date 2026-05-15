@@ -1,17 +1,16 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
+/** Bento tile — dark matte card with subtle border and hover lift. */
 export function GlassCard({
   children,
   className,
+  hover = true,
   ...props
-}: { children: ReactNode } & HTMLAttributes<HTMLDivElement>) {
+}: { children: ReactNode; hover?: boolean } & HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn(
-        "glass rounded-3xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)]",
-        className,
-      )}
+      className={cn("bento", hover && "bento-hover", className)}
       {...props}
     >
       {children}
@@ -25,19 +24,19 @@ export function Pill({
   className,
 }: {
   children: ReactNode;
-  variant?: "outline" | "filled" | "coral" | "sky";
+  variant?: "outline" | "filled" | "amber";
   className?: string;
 }) {
   const styles = {
-    outline: "border border-border/70 text-foreground/80 bg-background/40",
+    outline:
+      "border border-border/80 text-foreground/75 bg-foreground/[0.02]",
     filled: "bg-foreground text-background",
-    coral: "bg-coral/20 text-coral-foreground border border-coral/30",
-    sky: "bg-sky/30 text-foreground border border-sky/40",
+    amber: "bg-amber-soft text-amber border border-amber/30",
   }[variant];
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full px-3 py-1 text-[10px] font-medium uppercase tracking-wider",
+        "inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-medium tracking-wide font-mono uppercase",
         styles,
         className,
       )}
@@ -48,14 +47,5 @@ export function Pill({
 }
 
 export function Label({ children, className }: { children: ReactNode; className?: string }) {
-  return (
-    <span
-      className={cn(
-        "text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground",
-        className,
-      )}
-    >
-      {children}
-    </span>
-  );
+  return <span className={cn("label-mono", className)}>{children}</span>;
 }
