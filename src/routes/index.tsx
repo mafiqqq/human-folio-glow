@@ -139,15 +139,19 @@ function Index() {
         </div>
       </Tile>
 
-      {/* Stat counters — full row */}
-      {STATS.map((s, i) => (
-        <Tile key={s.label} className="md:col-span-3 lg:col-span-3 xl:col-span-3 col-span-1 md:!col-span-3" delay={0.05 * i}>
-          <div className="p-5">
+      {/* Stat counters — 4 across, full row */}
+      <motion.div
+        variants={tile}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        className="md:col-span-6 grid grid-cols-2 gap-4 sm:grid-cols-4"
+      >
+        {STATS.map((s) => (
+          <GlassCard key={s.label} className="p-5">
             <div className="font-display text-3xl font-bold tracking-tight">{s.value}</div>
             <div className="mt-1 label-mono">{s.label}</div>
-          </div>
-        </Tile>
-      ))}
+          </GlassCard>
+        ))}
+      </motion.div>
 
       {/* Skills (wide) */}
       <Tile className="md:col-span-4">
