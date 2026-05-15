@@ -52,8 +52,8 @@ function Blog() {
     >
       <GlassCard className="p-8 sm:p-10">
         <Label>WRITING</Label>
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-          Thoughts I've <span className="highlight-coral font-bold">written</span> down.
+        <h1 className="font-display mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+          Thoughts I've <span className="highlight-amber font-bold">written</span> down.
         </h1>
         <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
           Articles published on Dev.to — about frontend, engineering, and building products.

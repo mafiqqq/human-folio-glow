@@ -1,176 +1,308 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Info } from "lucide-react";
+import { useState } from "react";
+import {
+  ArrowUpRight,
+  Github,
+  Linkedin,
+  Mail,
+  Sun,
+  Moon,
+  Copy,
+  Check,
+} from "lucide-react";
 import { GlassCard, Pill, Label } from "@/components/GlassCard";
-import { PROFILE, STATS, TOOLS, CAREER } from "@/lib/content";
+import { useTheme } from "@/lib/theme";
+import { PROFILE, STATS, SKILL_GROUPS, CAREER } from "@/lib/content";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Afiq — Software Engineer building frontend products" },
+      { title: "Afiq — Software Engineer · Backend & AI" },
       {
         name: "description",
         content:
-          "Afiq is a software engineer at Siemens building frontend products with strong UI/UX and scalable systems.",
+          "Afiq is a software engineer at Siemens building backend systems and AI-powered tools that are clean, scalable, and production-ready.",
       },
     ],
   }),
   component: Index,
 });
 
-const heroWords = [
-  { text: "I am Afiq.", className: "font-light" },
-  { text: " I build", className: "font-light" },
-  { text: " frontend products", className: "font-bold highlight-coral" },
-  { text: " with strong", className: "font-light" },
-  { text: " UI/UX", className: "font-bold highlight-sky" },
-  { text: " and scalable systems.", className: "font-light" },
-];
+const tile = {
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0 },
+};
+const grid = {
+  show: { transition: { staggerChildren: 0.05 } },
+};
 
-function Index() {
+function Tile({
+  className,
+  children,
+  delay = 0,
+  hover = true,
+}: {
+  className?: string;
+  children: React.ReactNode;
+  delay?: number;
+  hover?: boolean;
+}) {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
-      className="space-y-6"
+      variants={tile}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1], delay }}
+      className={className}
     >
-      <div className="grid gap-6 lg:grid-cols-5">
-        {/* Hero */}
-        <GlassCard className="p-8 sm:p-10 lg:col-span-3">
-          <Label className="text-coral">SALAM AND HELLO EVERYONE 👋</Label>
-          <h1 className="mt-5 text-4xl leading-[1.15] tracking-tight sm:text-5xl lg:text-[3.4rem]">
-            {heroWords.map((w, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08, duration: 0.35 }}
-                className={w.className}
-              >
-                {w.text}
-              </motion.span>
-            ))}
-          </h1>
-
-          <div className="mt-8 flex flex-wrap gap-2">
-            <Pill>{`${PROFILE.role} @ ${PROFILE.company}`}</Pill>
-            <Pill>Frontend architecture</Pill>
-            <Pill>Pixel-perfect UI</Pill>
-            <Pill>Product delivery</Pill>
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-2">
-            <CTA href={PROFILE.github}>GitHub</CTA>
-            <CTA href={PROFILE.linkedin}>LinkedIn</CTA>
-            <CTA href={PROFILE.twitter}>X (Twitter)</CTA>
-            <Link
-              to="/blog"
-              className="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-background/40 px-4 py-2 text-xs font-medium transition-all hover:-translate-y-0.5 hover:border-foreground/40"
-            >
-              Read my writing <ArrowUpRight className="h-3.5 w-3.5" />
-            </Link>
-          </div>
-        </GlassCard>
-
-        {/* Right column */}
-        <div className="space-y-6 lg:col-span-2">
-          <GlassCard className="p-6">
-            <Label>CURRENTLY</Label>
-            <h3 className="mt-3 text-lg font-semibold leading-snug">
-              {PROFILE.role} <span className="text-muted-foreground">@</span> {PROFILE.company}
-            </h3>
-            <div className="mt-4 flex flex-wrap gap-1.5">
-              <Pill>UI/UX systems</Pill>
-              <Pill>CI/CD</Pill>
-              <Pill>Frontend leadership</Pill>
-            </div>
-          </GlassCard>
-
-          <GlassCard className="p-6">
-            <div className="flex items-center justify-between">
-              <Label>FEATURED TOOLS</Label>
-              <Link
-                to="/about"
-                className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground hover:text-foreground"
-              >
-                See all <ArrowUpRight className="h-3 w-3" />
-              </Link>
-            </div>
-            <div className="mt-4 grid grid-cols-2 gap-2">
-              {TOOLS.map((t) => (
-                <div
-                  key={t.name}
-                  className="rounded-2xl border border-border/50 bg-background/40 p-3 transition-all hover:-translate-y-0.5 hover:shadow-md"
-                >
-                  <div className="text-xl">{t.emoji}</div>
-                  <div className="mt-1.5 text-xs font-semibold">{t.name}</div>
-                  <div className="text-[9px] uppercase tracking-wider text-muted-foreground">
-                    {t.tag}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </GlassCard>
-        </div>
-      </div>
-
-      {/* Stats */}
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-        {STATS.map((s) => (
-          <GlassCard key={s.label} className="group relative p-6">
-            <div className="text-3xl font-bold tracking-tight">{s.value}</div>
-            <div className="mt-1 text-xs text-muted-foreground">{s.label}</div>
-            <div className="absolute right-3 top-3" title={s.info}>
-              <Info className="h-3.5 w-3.5 text-muted-foreground/60" />
-            </div>
-          </GlassCard>
-        ))}
-      </div>
-
-      {/* Career snapshot */}
-      <GlassCard className="p-8">
-        <Label>CAREER SNAPSHOT</Label>
-        <h2 className="mt-2 text-2xl font-semibold tracking-tight">Recent roles</h2>
-        <div className="mt-6 space-y-3">
-          {CAREER.map((c) => (
-            <div
-              key={c.company + c.range}
-              className="flex flex-col gap-3 rounded-2xl border border-border/40 bg-background/30 p-4 transition-all hover:-translate-y-0.5 hover:shadow-md sm:flex-row sm:items-center"
-            >
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-coral/40 to-sky/40 text-base font-bold">
-                {c.initial}
-              </div>
-              <div className="flex-1">
-                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                  {c.range}
-                </div>
-                <div className="mt-0.5 font-semibold">{c.role}</div>
-                <div className="text-sm text-muted-foreground">{c.company}</div>
-              </div>
-              <div className="flex flex-wrap items-center gap-1.5">
-                <Pill variant={c.badge === "Current" ? "filled" : "outline"}>{c.badge}</Pill>
-                {c.stack.slice(0, 3).map((s) => (
-                  <Pill key={s}>{s}</Pill>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+      <GlassCard hover={hover} className="h-full">
+        {children}
       </GlassCard>
     </motion.div>
   );
 }
 
-function CTA({ href, children }: { href: string; children: React.ReactNode }) {
+function Index() {
+  return (
+    <motion.div
+      variants={grid}
+      initial="hidden"
+      animate="show"
+      className="grid grid-cols-1 gap-4 md:grid-cols-6 md:auto-rows-[minmax(0,auto)]"
+    >
+      {/* Hero — large */}
+      <Tile className="md:col-span-4 md:row-span-2">
+        <div className="flex h-full flex-col p-7 sm:p-9">
+          <Label>SALAM AND HELLO EVERYONE 👋</Label>
+          <h1 className="font-display mt-5 text-3xl font-semibold leading-[1.12] tracking-tight sm:text-4xl lg:text-5xl">
+            I am Afiq. I build{" "}
+            <span className="highlight-amber font-bold">backend systems</span> and{" "}
+            <span className="highlight-amber font-bold">AI-powered tools</span> that are clean,
+            scalable, and production-ready.
+          </h1>
+
+          <div className="mt-7 flex flex-wrap gap-1.5">
+            <Pill>Software Engineer @ Siemens</Pill>
+            <Pill>Clean Architecture</Pill>
+            <Pill>LLM Integration</Pill>
+            <Pill>Production systems</Pill>
+          </div>
+
+          <div className="mt-auto flex flex-wrap gap-2 pt-8">
+            <CTA href={PROFILE.github} icon={<Github className="h-3.5 w-3.5" />}>
+              GitHub
+            </CTA>
+            <CTA href={PROFILE.linkedin} icon={<Linkedin className="h-3.5 w-3.5" />}>
+              LinkedIn
+            </CTA>
+            <Link
+              to="/blog"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-foreground/[0.02] px-4 py-2 text-xs font-medium transition-all hover:-translate-y-0.5 hover:border-amber/50 hover:text-amber"
+            >
+              Read my writing <ArrowUpRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+        </div>
+      </Tile>
+
+      {/* Currently */}
+      <Tile className="md:col-span-2">
+        <div className="p-6">
+          <Label>CURRENTLY</Label>
+          <h3 className="mt-3 font-display text-base font-semibold leading-snug">
+            Software Engineer
+            <br />
+            <span className="text-foreground/70">@ Siemens Industry Software</span>
+          </h3>
+          <div className="mt-4 flex flex-wrap gap-1.5">
+            <Pill variant="amber">Backend</Pill>
+            <Pill>AI Integration</Pill>
+            <Pill>Azure DevOps</Pill>
+          </div>
+        </div>
+      </Tile>
+
+      {/* Social grid */}
+      <Tile className="md:col-span-2">
+        <div className="p-6">
+          <Label>FIND ME</Label>
+          <div className="mt-4 grid grid-cols-3 gap-2">
+            <SocialIcon href={PROFILE.github} label="GitHub">
+              <Github className="h-4 w-4" />
+            </SocialIcon>
+            <SocialIcon href={PROFILE.linkedin} label="LinkedIn">
+              <Linkedin className="h-4 w-4" />
+            </SocialIcon>
+            <SocialIcon href={`mailto:${PROFILE.email}`} label="Email">
+              <Mail className="h-4 w-4" />
+            </SocialIcon>
+          </div>
+        </div>
+      </Tile>
+
+      {/* Stat counters — 4 across, full row */}
+      <motion.div
+        variants={tile}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        className="md:col-span-6 grid grid-cols-2 gap-4 sm:grid-cols-4"
+      >
+        {STATS.map((s) => (
+          <GlassCard key={s.label} className="p-5">
+            <div className="font-display text-3xl font-bold tracking-tight">{s.value}</div>
+            <div className="mt-1 label-mono">{s.label}</div>
+          </GlassCard>
+        ))}
+      </motion.div>
+
+      {/* Skills (wide) */}
+      <Tile className="md:col-span-4">
+        <div className="p-7">
+          <div className="flex items-center justify-between">
+            <Label>SKILLS &amp; STACK</Label>
+            <Link
+              to="/about"
+              className="inline-flex items-center gap-1 label-mono hover:text-foreground"
+            >
+              See all <ArrowUpRight className="h-3 w-3" />
+            </Link>
+          </div>
+          <div className="mt-5 space-y-4">
+            {SKILL_GROUPS.map((g) => (
+              <div key={g.label}>
+                <div className="label-mono accent-amber">{g.label}</div>
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {g.items.map((s) => (
+                    <Pill key={s}>{s}</Pill>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Tile>
+
+      {/* CTA */}
+      <Tile className="md:col-span-2">
+        <CtaCard />
+      </Tile>
+
+      {/* Experience list */}
+      <Tile className="md:col-span-4">
+        <div className="p-7">
+          <Label>EXPERIENCE</Label>
+          <ul className="mt-5 divide-y divide-border">
+            {CAREER.map((c) => (
+              <li
+                key={c.company + c.range}
+                className="flex flex-col gap-1 py-3 sm:flex-row sm:items-baseline sm:justify-between"
+              >
+                <div>
+                  <div className="font-semibold">{c.role}</div>
+                  <div className="text-xs text-muted-foreground">{c.company}</div>
+                </div>
+                <div className="label-mono">{c.range}</div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Tile>
+
+      {/* Theme toggle tile */}
+      <Tile className="md:col-span-2">
+        <ThemeTile />
+      </Tile>
+    </motion.div>
+  );
+}
+
+function CTA({
+  href,
+  children,
+  icon,
+}: {
+  href: string;
+  children: React.ReactNode;
+  icon?: React.ReactNode;
+}) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-background/40 px-4 py-2 text-xs font-medium transition-all hover:-translate-y-0.5 hover:border-foreground/40"
+      className="inline-flex items-center gap-1.5 rounded-full border border-border bg-foreground/[0.02] px-4 py-2 text-xs font-medium transition-all hover:-translate-y-0.5 hover:border-amber/50 hover:text-amber"
+    >
+      {icon}
+      {children}
+    </a>
+  );
+}
+
+function SocialIcon({
+  href,
+  children,
+  label,
+}: {
+  href: string;
+  children: React.ReactNode;
+  label: string;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={label}
+      className="flex aspect-square items-center justify-center rounded-xl border border-border bg-foreground/[0.02] text-foreground/70 transition-all hover:-translate-y-0.5 hover:border-amber/50 hover:text-amber"
     >
       {children}
     </a>
+  );
+}
+
+function CtaCard() {
+  const [copied, setCopied] = useState(false);
+  const copy = async () => {
+    await navigator.clipboard.writeText(PROFILE.email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1800);
+  };
+  return (
+    <div className="flex h-full flex-col p-6">
+      <Label>SAY HELLO 👋</Label>
+      <h3 className="font-display mt-3 text-xl font-semibold leading-tight">
+        Let's <span className="accent-amber">work together</span>.
+      </h3>
+      <p className="mt-2 text-xs text-muted-foreground">
+        Open to interesting problems and collaborations.
+      </p>
+      <button
+        onClick={copy}
+        className="mt-auto inline-flex items-center justify-between gap-2 rounded-xl border border-amber/40 bg-amber-soft px-3 py-2 text-xs font-medium text-amber transition-all hover:-translate-y-0.5"
+      >
+        <span className="font-mono truncate">{PROFILE.email}</span>
+        {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+      </button>
+    </div>
+  );
+}
+
+function ThemeTile() {
+  const { theme, toggle } = useTheme();
+  const Icon = theme === "dark" ? Moon : Sun;
+  return (
+    <button
+      onClick={toggle}
+      className="group flex h-full w-full flex-col p-6 text-left"
+      aria-label="Toggle theme"
+    >
+      <Label>THEME</Label>
+      <div className="mt-auto flex items-end justify-between">
+        <span className="font-display text-xl font-semibold">
+          {theme === "dark" ? "Dark" : "Light"}
+        </span>
+        <span className="rounded-full border border-border bg-foreground/[0.02] p-2.5 text-foreground/70 transition-colors group-hover:border-amber/50 group-hover:text-amber">
+          <Icon className="h-4 w-4" />
+        </span>
+      </div>
+    </button>
   );
 }

@@ -115,7 +115,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <div className="page-glow relative min-h-screen">
+        <div className="page-bg relative min-h-screen">
           <Sidebar />
           <div className="lg:pl-[220px]">
             <main className="mx-auto max-w-6xl p-4 sm:p-6 lg:p-8">

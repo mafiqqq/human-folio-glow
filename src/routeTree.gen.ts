@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as BlogRouteImport } from './routes/blog'
-import { Route as AmaRouteImport } from './routes/ama'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -23,11 +22,6 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const BlogRoute = BlogRouteImport.update({
   id: '/blog',
   path: '/blog',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AmaRoute = AmaRouteImport.update({
-  id: '/ama',
-  path: '/ama',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -44,14 +38,12 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/ama': typeof AmaRoute
   '/blog': typeof BlogRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/ama': typeof AmaRoute
   '/blog': typeof BlogRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
@@ -59,22 +51,20 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/ama': typeof AmaRoute
   '/blog': typeof BlogRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/ama' | '/blog' | '/sitemap.xml'
+  fullPaths: '/' | '/about' | '/blog' | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/ama' | '/blog' | '/sitemap.xml'
-  id: '__root__' | '/' | '/about' | '/ama' | '/blog' | '/sitemap.xml'
+  to: '/' | '/about' | '/blog' | '/sitemap.xml'
+  id: '__root__' | '/' | '/about' | '/blog' | '/sitemap.xml'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  AmaRoute: typeof AmaRoute
   BlogRoute: typeof BlogRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
@@ -93,13 +83,6 @@ declare module '@tanstack/react-router' {
       path: '/blog'
       fullPath: '/blog'
       preLoaderRoute: typeof BlogRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ama': {
-      id: '/ama'
-      path: '/ama'
-      fullPath: '/ama'
-      preLoaderRoute: typeof AmaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -122,7 +105,6 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  AmaRoute: AmaRoute,
   BlogRoute: BlogRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }

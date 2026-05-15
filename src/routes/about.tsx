@@ -26,12 +26,11 @@ function About() {
     >
       <GlassCard className="p-8 sm:p-10">
         <Label>CAREER</Label>
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-          A few chapters of my <span className="highlight-coral font-bold">journey</span> so far.
+        <h1 className="font-display mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+          A few chapters of my <span className="highlight-amber font-bold">journey</span> so far.
         </h1>
         <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
-          Different companies, different products, same curiosity to make things look right and
-          work right.
+          Different teams, different problems, same curiosity to make things work right at scale.
         </p>
 
         <div className="mt-8 space-y-4">
@@ -40,7 +39,7 @@ function About() {
               key={c.company + c.range}
               className="flex flex-col gap-4 rounded-2xl border border-border/50 bg-background/40 p-5 sm:flex-row"
             >
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-coral/40 to-sky/40 text-lg font-bold">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-amber/30 bg-amber-soft font-display text-lg font-bold accent-amber">
                 {c.initial}
               </div>
               <div className="flex-1 space-y-2">
@@ -66,7 +65,7 @@ function About() {
 
       <GlassCard className="p-8 sm:p-10">
         <Label>TOOLSTACK</Label>
-        <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">Tools I rely on</h2>
+        <h2 className="font-display mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">Tools I rely on</h2>
         <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
           {TOOLS.map((t) => (
             <div
@@ -85,7 +84,7 @@ function About() {
 
       <GlassCard className="p-8 sm:p-10">
         <Label>STRENGTHS</Label>
-        <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+        <h2 className="font-display mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
           What I bring to a team
         </h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-3">
