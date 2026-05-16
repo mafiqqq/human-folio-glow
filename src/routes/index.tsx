@@ -80,6 +80,17 @@ function Index() {
             scalable, and production-ready.
           </h1>
 
+          <div className="mt-6 space-y-2">
+            <div className="flex items-center gap-2.5 border-l-2 border-amber/60 pl-3 text-[14px] text-foreground/70">
+              <span className="label-mono accent-amber">Building</span>
+              <span>RAG pipelines and LLM-integrated backend systems</span>
+            </div>
+            <div className="flex items-center gap-2.5 border-l-2 border-amber/60 pl-3 text-[14px] text-foreground/70">
+              <span className="label-mono accent-amber">Exploring</span>
+              <span>AI agents, prompt engineering, and production LLM tooling</span>
+            </div>
+          </div>
+
           <div className="mt-7 flex flex-wrap gap-1.5">
             <Pill>Software Engineer @ Siemens</Pill>
             <Pill>Clean Architecture</Pill>
