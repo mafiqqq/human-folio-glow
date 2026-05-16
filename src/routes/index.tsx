@@ -6,13 +6,10 @@ import {
   Github,
   Linkedin,
   Mail,
-  Sun,
-  Moon,
   Copy,
   Check,
 } from "lucide-react";
 import { GlassCard, Pill, Label } from "@/components/GlassCard";
-import { useTheme } from "@/lib/theme";
 import { PROFILE, STATS, SKILL_GROUPS, CAREER } from "@/lib/content";
 
 export const Route = createFileRoute("/")({
@@ -67,10 +64,12 @@ function Index() {
       variants={grid}
       initial="hidden"
       animate="show"
-      className="grid grid-cols-1 gap-4 md:grid-cols-6 md:auto-rows-[minmax(0,auto)]"
+      className="grid gap-4"
     >
-      {/* Hero — large */}
-      <Tile className="md:col-span-4 md:row-span-2">
+      {/* Rows 1 + 2 — 60/40 split with tall Experience on the right */}
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
+        <div className="grid gap-4 lg:col-span-3">
+          <Tile>
         <div className="flex h-full flex-col p-7 sm:p-9">
           <Label>SALAM AND HELLO EVERYONE 👋</Label>
           <h1 className="font-display mt-5 text-3xl font-semibold leading-[1.12] tracking-tight sm:text-4xl lg:text-5xl">
@@ -113,59 +112,10 @@ function Index() {
             </Link>
           </div>
         </div>
-      </Tile>
+          </Tile>
 
-      {/* Currently */}
-      <Tile className="md:col-span-2">
-        <div className="p-6">
-          <Label>CURRENTLY</Label>
-          <h3 className="mt-3 font-display text-base font-semibold leading-snug">
-            Software Engineer
-            <br />
-            <span className="text-foreground/70">@ Siemens Industry Software</span>
-          </h3>
-          <div className="mt-4 flex flex-wrap gap-1.5">
-            <Pill variant="amber">Backend</Pill>
-            <Pill>AI Integration</Pill>
-            <Pill>Azure DevOps</Pill>
-          </div>
-        </div>
-      </Tile>
-
-      {/* Social grid */}
-      <Tile className="md:col-span-2">
-        <div className="p-6">
-          <Label>FIND ME</Label>
-          <div className="mt-4 grid grid-cols-3 gap-2">
-            <SocialIcon href={PROFILE.github} label="GitHub">
-              <Github className="h-4 w-4" />
-            </SocialIcon>
-            <SocialIcon href={PROFILE.linkedin} label="LinkedIn">
-              <Linkedin className="h-4 w-4" />
-            </SocialIcon>
-            <SocialIcon href={`mailto:${PROFILE.email}`} label="Email">
-              <Mail className="h-4 w-4" />
-            </SocialIcon>
-          </div>
-        </div>
-      </Tile>
-
-      {/* Stat counters — 4 across, full row */}
-      <motion.div
-        variants={tile}
-        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        className="md:col-span-6 grid grid-cols-2 gap-4 sm:grid-cols-4"
-      >
-        {STATS.map((s) => (
-          <GlassCard key={s.label} className="p-5">
-            <div className="font-display text-3xl font-bold tracking-tight">{s.value}</div>
-            <div className="mt-1 label-mono">{s.label}</div>
-          </GlassCard>
-        ))}
-      </motion.div>
-
-      {/* Skills (wide) */}
-      <Tile className="md:col-span-4">
+          {/* Skills */}
+          <Tile>
         <div className="p-7">
           <div className="flex items-center justify-between">
             <Label>SKILLS &amp; STACK</Label>
@@ -189,15 +139,11 @@ function Index() {
             ))}
           </div>
         </div>
-      </Tile>
+          </Tile>
+        </div>
 
-      {/* CTA */}
-      <Tile className="md:col-span-2">
-        <CtaCard />
-      </Tile>
-
-      {/* Experience list */}
-      <Tile className="md:col-span-4">
+        {/* Experience — tall, spans both rows */}
+        <Tile className="lg:col-span-2">
         <div className="p-7">
           <Label>EXPERIENCE</Label>
           <ul className="mt-5 divide-y divide-border">
@@ -215,12 +161,45 @@ function Index() {
             ))}
           </ul>
         </div>
-      </Tile>
+        </Tile>
+      </div>
 
-      {/* Theme toggle tile */}
-      <Tile className="md:col-span-2">
-        <ThemeTile />
-      </Tile>
+      {/* Row 3 — four cards across */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-10">
+        <Tile className="lg:col-span-2">
+          <div className="flex h-full flex-col p-5">
+            <div className="font-display text-3xl font-bold tracking-tight">{STATS[0].value}</div>
+            <div className="mt-1 label-mono">{STATS[0].label}</div>
+          </div>
+        </Tile>
+
+        <Tile className="lg:col-span-2">
+          <Link to="/blog" className="flex h-full flex-col p-5">
+            <Label>WRITING</Label>
+            <div className="mt-auto flex items-end justify-between">
+              <span className="font-display text-lg font-semibold leading-tight">
+                Read my blog
+              </span>
+              <ArrowUpRight className="h-4 w-4 text-foreground/70" />
+            </div>
+          </Link>
+        </Tile>
+
+        <Tile className="lg:col-span-3">
+          <div className="flex h-full flex-col p-5">
+            <Label>FIND ME</Label>
+            <div className="mt-3 flex flex-col gap-2">
+              <SocialRow href={PROFILE.github} label="GitHub" icon={<Github className="h-4 w-4" />} />
+              <SocialRow href={PROFILE.linkedin} label="LinkedIn" icon={<Linkedin className="h-4 w-4" />} />
+              <SocialRow href={`mailto:${PROFILE.email}`} label="Email" icon={<Mail className="h-4 w-4" />} />
+            </div>
+          </div>
+        </Tile>
+
+        <Tile className="lg:col-span-3">
+          <CtaCard />
+        </Tile>
+      </div>
     </motion.div>
   );
 }
@@ -269,6 +248,28 @@ function SocialIcon({
   );
 }
 
+function SocialRow({
+  href,
+  label,
+  icon,
+}: {
+  href: string;
+  label: string;
+  icon: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="flex items-center gap-3 rounded-xl border border-border bg-foreground/[0.02] px-3 py-2 text-xs font-medium text-foreground/80 transition-all hover:-translate-y-0.5 hover:border-amber/50 hover:text-amber"
+    >
+      <span className="text-foreground/70">{icon}</span>
+      {label}
+    </a>
+  );
+}
+
 function CtaCard() {
   const [copied, setCopied] = useState(false);
   const copy = async () => {
@@ -296,24 +297,3 @@ function CtaCard() {
   );
 }
 
-function ThemeTile() {
-  const { theme, toggle } = useTheme();
-  const Icon = theme === "dark" ? Moon : Sun;
-  return (
-    <button
-      onClick={toggle}
-      className="group flex h-full w-full flex-col p-6 text-left"
-      aria-label="Toggle theme"
-    >
-      <Label>THEME</Label>
-      <div className="mt-auto flex items-end justify-between">
-        <span className="font-display text-xl font-semibold">
-          {theme === "dark" ? "Dark" : "Light"}
-        </span>
-        <span className="rounded-full border border-border bg-foreground/[0.02] p-2.5 text-foreground/70 transition-colors group-hover:border-amber/50 group-hover:text-amber">
-          <Icon className="h-4 w-4" />
-        </span>
-      </div>
-    </button>
-  );
-}
