@@ -10,7 +10,7 @@ import {
 
 import appCss from "../styles.css?url";
 import { ThemeProvider } from "@/lib/theme";
-import { Sidebar } from "@/components/Sidebar";
+import { TopNav } from "@/components/TopNav";
 
 function NotFoundComponent() {
   return (
@@ -116,12 +116,10 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <div className="page-bg relative min-h-screen">
-          <Sidebar />
-          <div className="lg:pl-[220px]">
-            <main className="mx-auto max-w-6xl p-4 sm:p-6 lg:p-8">
-              <Outlet />
-            </main>
-          </div>
+          <TopNav />
+          <main className="mx-auto max-w-7xl px-4 pb-12 pt-20 sm:px-6 lg:px-8 lg:pt-24">
+            <Outlet />
+          </main>
         </div>
       </ThemeProvider>
     </QueryClientProvider>
