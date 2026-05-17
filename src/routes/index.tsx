@@ -97,21 +97,6 @@ function Index() {
           <div className="mt-auto flex flex-wrap items-center gap-2 pt-8">
             <Pill>Software Engineer @ Siemens</Pill>
             <Pill variant="amber">6 years of coffee, code &amp; console logs</Pill>
-            <a
-              href={PROFILE.github}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full border-[1.5px] border-border px-3 py-1.5 text-xs font-medium text-foreground/85 transition-all hover:-translate-y-0.5 hover:border-amber/60 hover:text-amber"
-            >
-              <Github className="h-3.5 w-3.5" />
-              View my projects
-            </a>
-            <IconLink href={PROFILE.linkedin} label="LinkedIn">
-              <Linkedin className="h-3.5 w-3.5" />
-            </IconLink>
-            <IconLink href={`mailto:${PROFILE.email}`} label="Email">
-              <Mail className="h-3.5 w-3.5" />
-            </IconLink>
             <Link
               to="/blog"
               className="inline-flex items-center gap-1.5 rounded-full border-[1.5px] border-amber/70 px-3 py-1.5 text-xs font-medium text-amber transition-all hover:-translate-y-0.5 hover:border-amber hover:bg-amber-soft"
@@ -189,6 +174,17 @@ function Index() {
               <p className="mt-2 text-sm text-muted-foreground">
                 Open to interesting problems and collaborations.
               </p>
+              <div className="mt-5 flex flex-wrap gap-2.5">
+                <SocialTile href={PROFILE.github} label="GitHub">
+                  <Github className="h-5 w-5" />
+                </SocialTile>
+                <SocialTile href={PROFILE.linkedin} label="LinkedIn">
+                  <Linkedin className="h-5 w-5" />
+                </SocialTile>
+                <SocialTile href={`mailto:${PROFILE.email}`} label="Email">
+                  <Mail className="h-5 w-5" />
+                </SocialTile>
+              </div>
               <div className="mt-auto flex flex-col gap-3 pt-6">
                 <button
                   type="button"
@@ -236,6 +232,28 @@ function IconLink({
       rel="noreferrer"
       aria-label={label}
       className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border bg-foreground/[0.02] text-foreground/70 transition-all hover:-translate-y-0.5 hover:border-amber/50 hover:text-amber"
+    >
+      {children}
+    </a>
+  );
+}
+
+function SocialTile({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={label}
+      className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-border bg-foreground/[0.02] text-foreground/75 transition-all hover:-translate-y-0.5 hover:border-amber/60 hover:text-amber hover:bg-amber-soft hover:shadow-[0_6px_18px_-8px_var(--amber)]"
     >
       {children}
     </a>
