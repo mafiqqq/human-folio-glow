@@ -151,7 +151,7 @@ function Index() {
         </div>
 
         {/* Right column — Experience + Say Hello */}
-        <div className="grid gap-4 lg:col-span-2 lg:[grid-template-rows:1fr_auto]">
+        <div className="grid gap-4 lg:col-span-2 lg:[grid-template-rows:auto_1fr]">
           <Tile>
             <div className="flex h-full flex-col p-7">
               <div className="flex items-center justify-between">
