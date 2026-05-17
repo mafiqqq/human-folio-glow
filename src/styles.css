@@ -78,8 +78,8 @@
   --border: oklch(0.92 0.005 270);
   --input: oklch(0.92 0.005 270);
   --ring: oklch(0.74 0.16 60);
-  --amber: oklch(0.78 0.17 60);
-  --amber-soft: oklch(0.78 0.17 60 / 0.18);
+  --amber: oklch(0.62 0.18 55);
+  --amber-soft: oklch(0.62 0.18 55 / 0.14);
   --bento: oklch(1 0 0);
   --bento-border: oklch(0.9 0.005 270);
   --chart-1: oklch(0.78 0.17 60);
