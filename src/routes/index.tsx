@@ -6,9 +6,12 @@ import {
   Linkedin,
   Mail,
   Download,
+  Copy,
+  Check,
 } from "lucide-react";
 import { GlassCard, Pill, Label } from "@/components/GlassCard";
 import { PROFILE, SKILL_GROUPS, CAREER } from "@/lib/content";
+import { useState } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -57,6 +60,14 @@ function Tile({
 }
 
 function Index() {
+  const [copied, setCopied] = useState(false);
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(PROFILE.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {}
+  };
   return (
     <motion.div
       variants={grid}
@@ -66,9 +77,9 @@ function Index() {
     >
       {/* Rows 1 + 2 — 60/40 split with tall Experience on the right */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
-        <div className="grid gap-4 lg:col-span-3">
+        <div className="grid gap-4 lg:col-span-3 lg:[grid-template-rows:1fr_auto]">
           <Tile>
-        <div className="relative flex h-full flex-col p-7 sm:p-9">
+        <div className="relative flex h-full flex-col p-7 sm:p-9 pb-12">
           <h1 className="font-display text-3xl font-semibold leading-[1.12] tracking-tight sm:text-4xl lg:text-5xl">
             I am Afiq. I build{" "}
             <span className="highlight-amber font-bold">backend systems</span> and{" "}
@@ -96,13 +107,22 @@ function Index() {
             </IconLink>
             <Link
               to="/blog"
-              className="inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-xs font-medium text-foreground/80 transition-all hover:text-amber"
+              className="inline-flex items-center gap-1.5 rounded-full border-[1.5px] border-amber/70 px-3 py-1.5 text-xs font-medium text-amber transition-all hover:-translate-y-0.5 hover:border-amber hover:bg-amber-soft"
             >
               Read my writing <ArrowUpRight className="h-3.5 w-3.5" />
             </Link>
+            <a
+              href={PROFILE.github}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border-[1.5px] border-border px-3 py-1.5 text-xs font-medium text-foreground/85 transition-all hover:-translate-y-0.5 hover:border-amber/60 hover:text-amber"
+            >
+              <Github className="h-3.5 w-3.5" />
+              View my projects
+            </a>
           </div>
 
-          <span className="absolute -bottom-3 right-6 rounded-full border border-amber/40 bg-amber px-3 py-1 text-[11px] font-semibold text-background shadow-md">
+          <span className="absolute bottom-4 right-6 rounded-full border border-amber/40 bg-amber px-3 py-1 text-[11px] font-semibold text-background shadow-md">
             6 years in industry
           </span>
         </div>
@@ -137,9 +157,9 @@ function Index() {
         </div>
 
         {/* Right column — Experience + Say Hello */}
-        <div className="grid gap-4 lg:col-span-2">
+        <div className="grid gap-4 lg:col-span-2 lg:[grid-template-rows:1fr_auto]">
           <Tile>
-            <div className="p-7">
+            <div className="flex h-full flex-col p-7">
               <div className="flex items-center justify-between">
                 <Label>EXPERIENCE</Label>
                 <Link
@@ -149,11 +169,11 @@ function Index() {
                   View all <ArrowUpRight className="h-3 w-3" />
                 </Link>
               </div>
-              <ul className="mt-5 divide-y divide-border">
+              <ul className="mt-4 divide-y divide-border">
                 {CAREER.map((c) => (
                   <li
                     key={c.company + c.range}
-                    className="flex flex-col gap-1 py-3 sm:flex-row sm:items-baseline sm:justify-between"
+                    className="flex flex-col gap-1 py-2.5 sm:flex-row sm:items-baseline sm:justify-between"
                   >
                     <div>
                       <div className="font-semibold">{c.role}</div>
@@ -172,15 +192,32 @@ function Index() {
               <h3 className="font-display mt-3 text-2xl font-semibold leading-tight">
                 Let's work <span className="highlight-amber font-bold">together.</span>
               </h3>
-              <a
-                href="https://drive.google.com/file/d/1UGmFDaDFQB7PIptccMMXPsq0O4dZ0v9o/view?usp=sharing"
-                target="_blank"
-                rel="noreferrer"
-                className="mt-6 inline-flex w-fit items-center gap-1.5 rounded-full border border-border bg-foreground/[0.02] px-4 py-2 text-xs font-medium transition-all hover:-translate-y-0.5 hover:border-amber/50 hover:text-amber"
-              >
-                <Download className="h-3.5 w-3.5" />
-                Download Resume
-              </a>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Open to interesting problems and collaborations.
+              </p>
+              <div className="mt-auto flex flex-col gap-3 pt-6">
+                <button
+                  type="button"
+                  onClick={copyEmail}
+                  className="group flex w-full items-center justify-between gap-3 rounded-full border border-amber/40 bg-amber-soft px-4 py-2.5 text-sm font-medium text-amber transition-all hover:-translate-y-0.5 hover:border-amber/70"
+                >
+                  <span className="font-mono">{PROFILE.email}</span>
+                  {copied ? (
+                    <Check className="h-4 w-4" />
+                  ) : (
+                    <Copy className="h-4 w-4 opacity-70 group-hover:opacity-100" />
+                  )}
+                </button>
+                <a
+                  href="https://drive.google.com/file/d/1UGmFDaDFQB7PIptccMMXPsq0O4dZ0v9o/view?usp=sharing"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex w-fit items-center gap-1.5 rounded-full border border-border bg-foreground/[0.02] px-4 py-2 text-xs font-medium transition-all hover:-translate-y-0.5 hover:border-amber/50 hover:text-amber"
+                >
+                  <Download className="h-3.5 w-3.5" />
+                  Download Resume
+                </a>
+              </div>
             </div>
           </Tile>
         </div>
