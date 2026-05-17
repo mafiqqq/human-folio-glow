@@ -79,7 +79,7 @@ function Index() {
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
         <div className="grid gap-4 lg:col-span-3 lg:[grid-template-rows:1fr_auto]">
           <Tile>
-        <div className="relative flex h-full flex-col p-7 sm:p-9 pb-12">
+        <div className="relative flex h-full flex-col p-7 sm:p-9">
           <h1 className="font-display text-3xl font-semibold leading-[1.12] tracking-tight sm:text-4xl lg:text-5xl">
             I am Afiq. I build{" "}
             <span className="highlight-amber font-bold">backend systems</span> and{" "}
@@ -96,9 +96,16 @@ function Index() {
 
           <div className="mt-auto flex flex-wrap items-center gap-2 pt-8">
             <Pill>Software Engineer @ Siemens</Pill>
-            <IconLink href={PROFILE.github} label="GitHub">
+            <Pill variant="amber">6 years of coffee, code &amp; console logs</Pill>
+            <a
+              href={PROFILE.github}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border-[1.5px] border-border px-3 py-1.5 text-xs font-medium text-foreground/85 transition-all hover:-translate-y-0.5 hover:border-amber/60 hover:text-amber"
+            >
               <Github className="h-3.5 w-3.5" />
-            </IconLink>
+              View my projects
+            </a>
             <IconLink href={PROFILE.linkedin} label="LinkedIn">
               <Linkedin className="h-3.5 w-3.5" />
             </IconLink>
@@ -111,20 +118,7 @@ function Index() {
             >
               Read my writing <ArrowUpRight className="h-3.5 w-3.5" />
             </Link>
-            <a
-              href={PROFILE.github}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full border-[1.5px] border-border px-3 py-1.5 text-xs font-medium text-foreground/85 transition-all hover:-translate-y-0.5 hover:border-amber/60 hover:text-amber"
-            >
-              <Github className="h-3.5 w-3.5" />
-              View my projects
-            </a>
           </div>
-
-          <span className="absolute bottom-4 right-6 rounded-full border border-amber/40 bg-amber px-3 py-1 text-[11px] font-semibold text-background shadow-md">
-            6 years in industry
-          </span>
         </div>
           </Tile>
 
