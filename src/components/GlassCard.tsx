@@ -29,14 +29,14 @@ export function Pill({
 }) {
   const styles = {
     outline:
-      "border border-border/80 text-foreground/75 bg-foreground/[0.02]",
+      "border border-border/80 text-foreground/75 bg-foreground/[0.02] hover:-translate-y-0.5 hover:border-amber/60 hover:text-amber hover:bg-amber-soft hover:shadow-[0_4px_14px_-6px_var(--amber)]",
     filled: "bg-foreground text-background",
     amber: "bg-amber-soft text-amber border border-amber/30",
   }[variant];
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-medium tracking-wide font-mono uppercase",
+        "inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-medium tracking-wide font-mono uppercase transition-all duration-200 ease-out cursor-default",
         styles,
         className,
       )}
