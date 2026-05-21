@@ -174,15 +174,15 @@ function Index() {
               <p className="mt-2 text-sm text-muted-foreground">
                 Open to interesting problems and collaborations.
               </p>
-              <div className="mt-5 flex flex-wrap gap-2.5">
+              <div className="mt-5 flex flex-wrap gap-2">
                 <SocialTile href={PROFILE.github} label="GitHub">
-                  <Github className="h-5 w-5" />
+                  <Github className="h-6 w-6" />
                 </SocialTile>
                 <SocialTile href={PROFILE.linkedin} label="LinkedIn">
-                  <Linkedin className="h-5 w-5" />
+                  <Linkedin className="h-6 w-6" />
                 </SocialTile>
                 <SocialTile href={`mailto:${PROFILE.email}`} label="Email">
-                  <Mail className="h-5 w-5" />
+                  <Mail className="h-6 w-6" />
                 </SocialTile>
               </div>
               <div className="mt-auto flex flex-col gap-3 pt-6">
