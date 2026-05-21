@@ -174,15 +174,15 @@ function Index() {
               <p className="mt-2 text-sm text-muted-foreground">
                 Open to interesting problems and collaborations.
               </p>
-              <div className="mt-5 flex flex-wrap gap-2.5">
+              <div className="mt-5 flex flex-wrap gap-2">
                 <SocialTile href={PROFILE.github} label="GitHub">
-                  <Github className="h-5 w-5" />
+                  <Github className="h-6 w-6" />
                 </SocialTile>
                 <SocialTile href={PROFILE.linkedin} label="LinkedIn">
-                  <Linkedin className="h-5 w-5" />
+                  <Linkedin className="h-6 w-6" />
                 </SocialTile>
                 <SocialTile href={`mailto:${PROFILE.email}`} label="Email">
-                  <Mail className="h-5 w-5" />
+                  <Mail className="h-6 w-6" />
                 </SocialTile>
               </div>
               <div className="mt-auto flex flex-col gap-3 pt-6">
@@ -253,7 +253,7 @@ function SocialTile({
       target="_blank"
       rel="noreferrer"
       aria-label={label}
-      className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-border bg-foreground/[0.02] text-foreground/75 transition-all hover:-translate-y-0.5 hover:border-amber/60 hover:text-amber hover:bg-amber-soft hover:shadow-[0_6px_18px_-8px_var(--amber)]"
+      className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-border bg-foreground/[0.02] text-foreground/75 transition-all hover:-translate-y-0.5 hover:border-amber/60 hover:text-amber hover:bg-amber-soft hover:shadow-[0_6px_18px_-8px_var(--amber)]"
     >
       {children}
     </a>
