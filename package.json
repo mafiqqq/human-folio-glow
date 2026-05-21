@@ -2,7 +2,6 @@
   "name": "tanstack_start_ts",
   "private": true,
   "version": "1.0.0",
-  "homepage": "https://github.io",
   "sideEffects": false,
   "type": "module",
   "scripts": {
@@ -11,9 +10,7 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
-    "format": "prettier --write .",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d .output/public" 
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.25.5",
