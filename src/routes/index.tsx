@@ -253,7 +253,7 @@ function SocialTile({
       target="_blank"
       rel="noreferrer"
       aria-label={label}
-      className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-border bg-foreground/[0.02] text-foreground/75 transition-all hover:-translate-y-0.5 hover:border-amber/60 hover:text-amber hover:bg-amber-soft hover:shadow-[0_6px_18px_-8px_var(--amber)]"
+      className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-border bg-foreground/[0.02] text-foreground/75 transition-all hover:-translate-y-0.5 hover:border-amber/60 hover:text-amber hover:bg-amber-soft hover:shadow-[0_6px_18px_-8px_var(--amber)]"
     >
       {children}
     </a>
