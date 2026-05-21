@@ -51,7 +51,11 @@ function About() {
                 </div>
                 <h3 className="text-lg font-semibold">{c.role}</h3>
                 <div className="text-sm text-muted-foreground">{c.company}</div>
-                <p className="text-sm leading-relaxed text-foreground/80">{c.description}</p>
+                <ul className="list-disc space-y-1 pl-5 text-sm leading-relaxed text-foreground/100">
+                  {c.description.map((desc) => (
+                    <li key={desc}>{desc}</li>
+                  ))}
+                </ul>
                 <div className="flex flex-wrap gap-1.5 pt-1">
                   {c.stack.map((s) => (
                     <Pill key={s}>{s}</Pill>
@@ -65,7 +69,7 @@ function About() {
 
       <GlassCard className="p-8 sm:p-10">
         <Label>TOOLSTACK</Label>
-        <h2 className="font-display mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">Tools I rely on</h2>
+        <h2 className="font-display mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">Tools I focused on mainly now..</h2>
         <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
           {TOOLS.map((t) => (
             <div

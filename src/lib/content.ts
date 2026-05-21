@@ -22,13 +22,11 @@ export const SKILL_GROUPS = [
   {
     label: "Languages & Frameworks",
     items: [
-      "Python",
       "C#",
       "ASP.NET Core",
-      "React",
-      "TypeScript",
-      "JavaScript",
-      "SQL",
+      "Python",
+      "Desktop Application (WinUI3 / WPF)",
+      "React",      
       "PostgreSQL",
       "MongoDB",
     ],
@@ -36,41 +34,40 @@ export const SKILL_GROUPS = [
   {
     label: "AI / LLM",
     items: [
-      "OpenAI",
-      "Claude",
-      "Llama",
-      "Mistral",
-      "ChromaDB",
-      "RAG",
       "Prompt Engineering",
+      "RAG / Vector Search",
+      "ChromaDB",
+      "OpenRouter",
+      "Agent Design",
+      "MCP (Model Context Protocol)",
       "Model Evaluation",
     ],
   },
   {
     label: "Practices & DevOps",
     items: [
-      "OOP",
+      "Object-Oriented Programming",
       "Clean Architecture",
       "RESTful APIs",
       "Git",
-      "Azure DevOps",
       "GitHub Actions",
       "CI/CD",
       "xUnit",
       "Pytest",
       "Cypress",
+      "PowerShell",
     ],
   },
 ] as const;
 
 // Flat preview list (kept for compatibility with About page tools section)
 export const TOOLS = [
-  { name: "Python", tag: "CORE", emoji: "🐍" },
   { name: "C# / .NET", tag: "CORE", emoji: "🧩" },
-  { name: "OpenAI / LLMs", tag: "CORE", emoji: "🤖" },
+  { name: "Python", tag: "CORE", emoji: "🐍" },
+  { name: "LLM Engineering", tag: "CORE", emoji: "🤖" },
   { name: "PostgreSQL", tag: "CORE", emoji: "🗄️" },
   { name: "React", tag: "OCCASIONAL", emoji: "⚛️" },
-  { name: "Azure DevOps", tag: "CORE", emoji: "☁️" },
+  { name: "Docker / GitHub Actions", tag: "OCCASIONAL", emoji: "☁️" },
 ] as const;
 
 export const CAREER = [
@@ -79,9 +76,13 @@ export const CAREER = [
     role: "Software Engineer",
     range: "APR 2024 – PRESENT",
     badge: "Current" as const,
-    description:
-      "Backend services and AI-integrated tools across .NET and Python. Owning APIs, data flows, and CI/CD on Azure DevOps.",
-    stack: ["C#", "ASP.NET Core", "Python", "Azure DevOps", "SQL"],
+    description: [
+      "Designed and built scalable manufacturing system (MES) applications in Mendix, C# (.NET 6), JavaScript applying clean architecture to keep the codebase maintainable and performant as requirements evolved",
+      "Engineered an internal productivity tool combining C#, Python, and LLM models (OpenAI-compatible) automated data extraction and enabled natural-language querying over vectorized data stored in ChromaDB",
+      "Developed a WinUI 3 desktop application using MVVM, achieving clear separation of concerns and high testability",
+      "Automated build and test workflows using Azure DevOps, Desktop Applications and PowerShell scripting, reducing manual CI steps and improving pipeline reliability"
+    ],
+    stack: ["C#", "ASP.NET Core", "WPF/WinUI 3", "Python", "ChromaDB","Azure DevOps", "SQL"],
     initial: "S",
   },
   {
@@ -89,9 +90,12 @@ export const CAREER = [
     role: "Software Development Engineer",
     range: "AUG 2020 – MAR 2024",
     badge: "Past" as const,
-    description:
-      "Built internal engineering tooling and data pipelines supporting silicon yield and process workflows at scale.",
-    stack: ["Python", "C#", "SQL", "REST APIs"],
+    description:[
+      "Led database redesign and migration from MariaDB to PostgreSQL, improving system performance by up to 7x and ensuring data consistency",
+      "Applied Agile methodologies in development of full-stack applications using React, ASP.NET Core, and Python, delivering clean, scalable, and production-ready code",
+      "Implemented CI/CD pipelines using GitHub Actions, improving build, test, and deployment efficiency"
+    ],
+    stack: ["C#", "ASP.NET Core", "Python", "SQL", "REST APIs", "React", "GitHub Actions"],
     initial: "I",
   },
   {
@@ -99,9 +103,12 @@ export const CAREER = [
     role: "Yield Integration Intern",
     range: "FEB 2020 – AUG 2020",
     badge: "Past" as const,
-    description:
-      "Automated yield reporting and statistical workflows, reducing manual analysis time for engineering teams.",
-    stack: ["Python", "SQL"],
+    description:[
+      "Reduced complexity and time for data analysis with SQL queries to retrieve the data then developed a data visualization dashboard using Python library (Bokeh), Pandas and Numpy for data cleaning",
+      "Performed statistical analysis to determine the abnormality in data such as shifted signals and spike in trend using JMP software tool and used Scripthost to set a scheduler",
+      "Automate the chart trend using Power BI tools and created an alert system for spike in defect trend"
+    ],
+    stack: ["Python", "SQL", "Data Analysis", "Numpy", "Pandas", "Power BI"],
     initial: "I",
   },
   {
@@ -109,27 +116,29 @@ export const CAREER = [
     role: "Ionic App Developer",
     range: "JAN 2019 – MAY 2019",
     badge: "Past" as const,
-    description:
-      "First chapter — shipped a cross-platform health app prototype with Ionic and Angular.",
-    stack: ["Ionic", "Angular", "TypeScript"],
+    description: [
+      "Developed a mobile application for trip collaboration by using the Ionic Framework, Angular and JavaScript for the application as well as using Google's Firebase to serve the application and act as a database management system",
+      "Integrated Firebase Login API for Google+ and Facebook. Next, Google location services to get the device location and suggest location-based search bar that are mapped onto the Google Maps"
+    ],
+    stack: ["Ionic", "Angular", "TypeScript", "Firebase"],
     initial: "V",
   },
 ] as const;
 
 export const STRENGTHS = [
   {
-    title: "Backend Systems",
+    title: "Scalable Backend Systems",
     icon: "🧱",
-    description: "APIs, data flow, and architecture built to scale and stay maintainable.",
+    description: "Backend services and APIs designed for reliability, performance, and long-term growth.",
   },
   {
-    title: "AI / LLM Integration",
+    title: "Applied AI Engineering",
     icon: "🤖",
-    description: "Production-ready RAG, prompt engineering, and model evaluation pipelines.",
+    description: "Building practical LLM features with RAG, evaluation pipelines, and production-focused integrations.",
   },
   {
-    title: "Clean Code",
+    title: "Engineering Clarity",
     icon: "✨",
-    description: "Boring, readable code on purpose — clarity over cleverness.",
+    description: "Driving maintainable architecture, collaborative development, mentoring developers and long-term engineering quality.",
   },
 ] as const;

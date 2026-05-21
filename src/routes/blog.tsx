@@ -55,8 +55,8 @@ function Blog() {
         <h1 className="font-display mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
           Thoughts I've <span className="highlight-amber font-bold">written</span> down.
         </h1>
-        <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
-          Articles published on Dev.to — about frontend, engineering, and building products.
+        <p className="mt-3 max-w-3xl text-sm text-muted-foreground">
+          Writing on Dev.to to document my learning journey in backend, prompt engineering and software development along the way.
         </p>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
