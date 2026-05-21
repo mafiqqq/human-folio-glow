@@ -12,9 +12,14 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
+    // 1. Tell TanStack Start to crawl your routes and export static HTML
+    prerender: {
+      enabled: true,
+      crawlLinks: true,
+    },
   },
   // Pass the GitHub Pages sub-directory path to the underlying Vite config
   vite: {
-    base: 'human-folio-glow/', // <-- Replace with your exact GitHub Repo name
+    base: '/human-folio-glow/', // <-- Replace with your exact GitHub Repo name
   }
 });
