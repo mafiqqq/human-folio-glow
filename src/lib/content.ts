@@ -62,7 +62,7 @@ export const SKILL_GROUPS = [
 
 export const PROJECTS = [
   {
-    title: "Resume builder with AI",
+    title: "Resume and Cover Letter Builder with AI",
     repo: "https://github.com/mafiqqq/resumatch-ai",
     description:
       "Architected a multi-agent LLM orchestration system with distinct agent roles: a Resume Tailoring Agent with a dedicated system prompt engineered to align bullet points and summaries to job descriptions, and a Cover Letter Agent with its own context window and prompt strategy demonstrating end-to-end agentic workflow design with structured outputs and per-agent prompt engineering.",
