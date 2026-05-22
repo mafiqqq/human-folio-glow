@@ -60,6 +60,33 @@ export const SKILL_GROUPS = [
   },
 ] as const;
 
+export const PROJECTS = [
+  {
+    title: "Resume builder with AI",
+    repo: "https://github.com/mafiqqq/resumatch-ai",
+    description:
+      "Architected a multi-agent LLM orchestration system with distinct agent roles: a Resume Tailoring Agent with a dedicated system prompt engineered to align bullet points and summaries to job descriptions, and a Cover Letter Agent with its own context window and prompt strategy demonstrating end-to-end agentic workflow design with structured outputs and per-agent prompt engineering.",
+    stack: ["c#/.NET", "React", "OpenRouter", "LLM Integration"],
+    status: "Code available",
+  },
+  {
+    title: "mafiqqq dev",
+    repo: "https://github.com/mafiqqq/human-folio-glow",
+    description:
+      "",
+    stack: ["React", "TanStack Start", "Tailwind CSS", "TypeScript"],
+    status: "Code available",
+  },
+  {
+    title: "Feature file RAG Generation",
+    repo: "https://github.com/mafiqqq/rag-fector",
+    description:
+      "AI-powered BDD feature file generation. Scrapes your existing .feature files, embeds them into pgvector, and uses RAG + GPT to generate new, consistent Gherkin scenarios that reuse your team's existing step phrasings.",
+    stack: ["Python", "ASP.NET Core", "PostgreSQL", "RAG"],
+    status: "Code available",
+  },
+] as const;
+
 // Flat preview list (kept for compatibility with About page tools section)
 export const TOOLS = [
   { name: "C# / .NET", tag: "CORE", emoji: "🧩" },
