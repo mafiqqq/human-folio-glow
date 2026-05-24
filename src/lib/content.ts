@@ -73,7 +73,7 @@ export const PROJECTS = [
     title: "mafiqqq dev",
     repo: "https://github.com/mafiqqq/human-folio-glow",
     description:
-      "",
+      "Developed this portfolio website using React, Tailwind CSS, and Vite, showcasing my career journey, projects, and technical strengths with a focus on clean design and smooth user experience.",
     stack: ["React", "TanStack Start", "Tailwind CSS", "TypeScript"],
     status: "Code available",
   },
